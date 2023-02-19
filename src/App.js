@@ -61,12 +61,14 @@ function App() {
   return (
     <div className='content'>
       <div className='background'>
-        <p className='ground'>{textGround}</p>
-        <img className='scene' id='a' src={cloud} alt="Cloud" width="75" style={{'left': cloudPositionA}} />
-        <img className='scene' id='b' src={cloud} alt="Cloud" width="75" style={{'left': cloudPositionB}} />
+        <img className='scene' id='a' src={cloud} alt="Cloud" width="80vw" style={{'left': cloudPositionA}} />
+        <img className='scene' id='b' src={cloud} alt="Cloud" width="80vw" style={{'left': cloudPositionB}} />
+      </div>
+      <div className='ground'>
+        {textGround}
       </div>
       <div className='player'>
-        <img src={crab} alt="Crab" width="100" />
+        <img src={crab} alt="Crab" width="100vw" />
       </div>
     </div>
   );
