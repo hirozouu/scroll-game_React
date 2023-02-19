@@ -1,9 +1,6 @@
 .content {
   position: relative;
   height: 100vh;
-  padding: 10px; 
-  margin-bottom: 10px; 
-  border: 1px dotted #333333;
 }
 
 .background {
@@ -24,7 +21,14 @@
 
 .background .scene {
   position: absolute;
+}
+
+.background #a {
   top: 25%;
+}
+
+.background #b {
+  top: 15%;
 }
 
 .player {

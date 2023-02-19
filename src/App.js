@@ -18,11 +18,12 @@ function App() {
   const textGroundB = "._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._."
   const [textGround, setTextGround] = useState(textGroundA);
 
-  const [cloudPosition, setCloudPosition] = useState("0%")
+  const [cloudPositionA, setCloudPositionA] = useState("99%")
+  const [cloudPositionB, setCloudPositionB] = useState("75%")
 
   let sceneMoves = []
   for (let i = 0; i < 100; i++) {
-    sceneMoves.push(String(99-i)+"%")
+    sceneMoves.push(i)
   }
 
   const [width, height] = useWindowSize();
@@ -36,8 +37,10 @@ function App() {
       setTextGround(textGroundA);
       time = true;
     }
-    setCloudPosition(sceneMoves[count])
 
+    setCloudPositionA(String(99-sceneMoves[count])+"%")
+    setCloudPositionB(String(99-((sceneMoves[count]+10)%100))+"%")
+    
     count += 1
     if (count > 99) {
       count = 0
@@ -59,7 +62,8 @@ function App() {
     <div className='content'>
       <div className='background'>
         <p className='ground'>{textGround}</p>
-        <img className='scene' src={cloud} alt="Cloud" width="100" style={{'left': cloudPosition}} />
+        <img className='scene' id='a' src={cloud} alt="Cloud" width="75" style={{'left': cloudPositionA}} />
+        <img className='scene' id='b' src={cloud} alt="Cloud" width="75" style={{'left': cloudPositionB}} />
       </div>
       <div className='player'>
         <img src={crab} alt="Crab" width="100" />
