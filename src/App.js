@@ -26,6 +26,10 @@ function App() {
     sceneMoves.push(i)
   }
 
+  const onClickEvent = (e) => {
+      console.log("click")
+  }
+
   const [width, height] = useWindowSize();
 
   const setAllState = () => {
@@ -59,7 +63,7 @@ function App() {
   });
 
   return (
-    <div className='content'>
+    <div className='content' onClick={onClickEvent}>
       <div className='background'>
         <img className='scene' id='a' src={cloud} alt="Cloud" width="80vw" style={{'left': cloudPositionA}} />
         <img className='scene' id='b' src={cloud} alt="Cloud" width="80vw" style={{'left': cloudPositionB}} />
