@@ -27,7 +27,6 @@
 .ground {
   position: absolute;
   font-size: 3vw;
-  position: absolute;
   top: 55%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
@@ -36,6 +35,16 @@
 .player {
   position: absolute;
   text-align: center;
-  top: 50%;
+  top: 55%;
   left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+.message {
+  font-size: 2vw;
+  position: absolute;
+  text-align: center;
+  top: 65%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
 }

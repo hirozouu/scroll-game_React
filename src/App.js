@@ -9,10 +9,14 @@ import cloud from './images/cloud.png'
 import useWindowSize from "./hooks/useWindowSize";
 import { useEffect, useState } from 'react';
 
+let isJumping = false;
+
 function App() {
 
   let time = true;
   let count = 0;
+
+  let countJump = 0;
 
   const textGroundA = "_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._"
   const textGroundB = "._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._."
@@ -21,13 +25,25 @@ function App() {
   const [cloudPositionA, setCloudPositionA] = useState("99%")
   const [cloudPositionB, setCloudPositionB] = useState("75%")
 
+  const [playerPosition, setPlayerPosition] = useState("55%")
+
   let sceneMoves = []
   for (let i = 0; i < 100; i++) {
     sceneMoves.push(i)
   }
 
-  const onClickEvent = (e) => {
-      console.log("click")
+  const jumpHeight = 10 // [%]
+  const jumpTime = 10 // [frame]
+  let jumpMoves = []
+  const b = (jumpTime-1)/2
+  const c = jumpHeight
+  const a = -c / (b * b)
+  for (let i = 0; i < jumpTime; i++) {
+    jumpMoves.push(String(55+a*(i-b)*(i-b)-c)+"%")
+  }
+
+  const onClickEvent = () => {
+    isJumping = true;
   }
 
   const [width, height] = useWindowSize();
@@ -44,6 +60,15 @@ function App() {
 
     setCloudPositionA(String(99-sceneMoves[count])+"%")
     setCloudPositionB(String(99-((sceneMoves[count]+10)%100))+"%")
+
+    if (isJumping === true) {
+      setPlayerPosition(jumpMoves[countJump])
+      countJump += 1;
+      if (countJump === jumpTime) {
+        countJump = 0;
+        isJumping = false;
+      }
+    }
     
     count += 1
     if (count > 99) {
@@ -72,7 +97,10 @@ function App() {
         {textGround}
       </div>
       <div className='player'>
-        <img src={crab} alt="Crab" width="100vw" />
+        <img src={crab} alt="Crab" width="100vw" style={{'top': playerPosition}}/>
+      </div>
+      <div className='message'>
+        My Github : https://github.com/hirozouu
       </div>
     </div>
   );
