@@ -9,38 +9,39 @@ import cloud from './images/cloud.png'
 import useWindowSize from "./hooks/useWindowSize";
 import { useEffect, useState } from 'react';
 
+// Variables and Constants
+// jump
 let isJumping = false;
+let countJump = 0;
+
+const JUMP_HEIGHT = 10 // [%]
+const JUMP_TIME = 10 // [frame]
+let jumpMoves = []
+const b = (JUMP_TIME-1)/2
+const c = JUMP_HEIGHT
+const a = -c / (b * b)
+for (let i = 0; i < JUMP_TIME; i++) {
+  jumpMoves.push(String(parseInt(55+a*(i-b)*(i-b)-c))+"%")
+}
+
+// background
+const textGroundA = "_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._"
+const textGroundB = "._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._."
+let time = true;
+let count = 0;
+
+let sceneMoves = []
+for (let i = 0; i < 100; i++) {
+  sceneMoves.push(i)
+}
 
 function App() {
-
-  let time = true;
-  let count = 0;
-
-  let countJump = 0;
-
-  const textGroundA = "_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._"
-  const textGroundB = "._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._."
   const [textGround, setTextGround] = useState(textGroundA);
 
   const [cloudPositionA, setCloudPositionA] = useState("99%")
   const [cloudPositionB, setCloudPositionB] = useState("75%")
 
   const [playerPosition, setPlayerPosition] = useState("55%")
-
-  let sceneMoves = []
-  for (let i = 0; i < 100; i++) {
-    sceneMoves.push(i)
-  }
-
-  const jumpHeight = 10 // [%]
-  const jumpTime = 10 // [frame]
-  let jumpMoves = []
-  const b = (jumpTime-1)/2
-  const c = jumpHeight
-  const a = -c / (b * b)
-  for (let i = 0; i < jumpTime; i++) {
-    jumpMoves.push(String(55+a*(i-b)*(i-b)-c)+"%")
-  }
 
   const onClickEvent = () => {
     isJumping = true;
@@ -64,7 +65,8 @@ function App() {
     if (isJumping === true) {
       setPlayerPosition(jumpMoves[countJump])
       countJump += 1;
-      if (countJump === jumpTime) {
+      
+      if (countJump === JUMP_TIME) {
         countJump = 0;
         isJumping = false;
       }
@@ -98,9 +100,6 @@ function App() {
       </div>
       <div className='player'>
         <img src={crab} alt="Crab" width="100vw" style={{'top': playerPosition}}/>
-      </div>
-      <div className='message'>
-        My Github : https://github.com/hirozouu
       </div>
     </div>
   );

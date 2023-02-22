@@ -39,12 +39,3 @@
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
 }
-
-.message {
-  font-size: 2vw;
-  position: absolute;
-  text-align: center;
-  top: 65%;
-  left: 50%;
-  transform: translateY(-50%) translateX(-50%);
-}
