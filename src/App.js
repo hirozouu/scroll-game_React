@@ -25,8 +25,8 @@ for (let i = 0; i < JUMP_TIME; i++) {
 }
 
 // background
-const textGroundA = "_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._"
-const textGroundB = "._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._."
+const TEXT_GROUND_A = "_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._"
+const TEXT_GROUND_B = "._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._."
 let time = true;
 let count = 0;
 
@@ -36,7 +36,7 @@ for (let i = 0; i < 100; i++) {
 }
 
 function App() {
-  const [textGround, setTextGround] = useState(textGroundA);
+  const [textGround, setTextGround] = useState(TEXT_GROUND_A);
 
   const [cloudPositionA, setCloudPositionA] = useState("99%")
   const [cloudPositionB, setCloudPositionB] = useState("75%")
@@ -51,11 +51,11 @@ function App() {
 
   const setAllState = () => {
     if (time) {
-      setTextGround(textGroundB);
+      setTextGround(TEXT_GROUND_B);
       time = false;
     }
     else {
-      setTextGround(textGroundA);
+      setTextGround(TEXT_GROUND_A);
       time = true;
     }
 
